@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco</title>
+</head>
+
+<body>
+    <script>
+
+        var nome = prompt("Qual seu nome?");
+
+        var senha = 3589;
+
+        var saldo_em_conta = 100;
+
+        function login() {
+
+            var confirmacao_de_senha = parseInt(prompt("Para continuar e acessar seus dados bancarios por favor, digite sua senha"));
+
+            if (confirmacao_de_senha == senha) {
+
+                menu_principal();
+
+            } else {
+
+                alert("Senha incorreta! Por favor, digite sua senha novamente");
+
+                login();
+
+            }
+
+        }
+
+        function menu_principal() {
+
+            var inicio = parseInt(prompt("Olá " + nome + "! É um prazer ter você aqui. Por favor selecione uma das opções: 1) Saldo  2) Extrato  3) Saque  4) Depósito  5) Tranferência  6) Sair"));
+
+            switch (inicio) {
+                case 1:
+                    saldo();
+                    break;
+
+                case 2:
+                    extrato();
+                    break;
+
+                case 3:
+                    saque();
+                    break;
+
+                case 4:
+                    deposito();
+                    break;
+                case 5:
+                    transferencia();
+                    break;
+                case 6:
+                    sair();
+                    break;
+
+                default:
+                    alert("Opção invalida, por favor digite uma opção de 1 a 6");
+                    menu_principal();
+                    break;
+            }
+
+        }
+
+        function saldo() {
+
+            var seguranca_saldo = parseFloat(prompt("Por motivos de segurança, digite sua senha para continuar: "));
+
+            if (seguranca_saldo == senha) {
+
+                alert("Seu saldo atual é de: " + saldo_em_conta + " reais");
+
+                menu_principal();
+
+            } else {
+
+                alert("Operação não autorizada");
+
+                saldo();
+
+            }
+
+        }
+
+        function extrato() {
+
+            var seguranca_extrato = parseFloat(prompt("Por motivos de segurança, digite sua senha para continuar: "));
+
+            if (seguranca_extrato == senha) {
+
+                alert("Fone Shoppe - 12,99$  Acões da Americanas - 00,01$  Iphono 15 - 1.500,00$");
+
+                menu_principal();
+
+            } else {
+
+                alert("Operação não autorizada");
+
+                extrato();
+            }
+
+        }
+
+        function saque() {
+
+            var seguranca_saque = parseFloat(prompt("Por motivos de segurança, digite sua senha para continuar: "));
+
+            if (seguranca_saque == senha) {
+
+                var valor_saque = parseFloat(prompt("Digite o valor que você quer sacar: "));
+
+                while (valor_saque > saldo_em_conta) {
+
+                    alert("Operação não autorizada");
+
+                    menu_principal();
+
+                }
+
+                while (valor_saque <= 0) {
+
+                    alert("Operação não autorizada");
+
+                    menu_principal();
+
+                }
+
+                var resultado_saque = saldo_em_conta - valor_saque;
+
+                alert("Saque efetuado com sucesso!");
+
+                menu_principal();
+
+            } else {
+
+                alert("Operação não autorizada");
+
+                saque();
+            }
+
+        }
+
+        function deposito() {
+
+            var seguranca_deposito = parseFloat(prompt("Por motivos de segurança, digite sua senha para continuar: "));
+
+            if (seguranca_deposito == senha) {
+
+                var valor_deposito = parseFloat(prompt("Informe o valor do deposito: "));
+
+            while (valor_deposito <= 0) {
+
+                alert("Operação não autorizada");
+
+                deposito();
+
+            }
+
+            var resultado_deposito = saldo_em_conta + valor_deposito;
+
+            alert("Deposito feito com sucesso!");
+
+            menu_principal();
+
+            } else {
+
+                alert("Operação não autorizada");
+
+                deposito();
+
+            }
+
+        }
+
+        function transferencia() {
+
+            var seguranca_transferencia = parseFloat(prompt("Por motivos de segurança, digite sua senha para continuar: "));
+
+            if (seguranca_transferencia == senha) {
+
+                var conta_transferencia = prompt("Digite a conta que você quer transferir: ");
+
+                var valor_transferencia = parseFloat(prompt("Digite o valor que você quer transferir para " + conta_transferencia + ":"));
+
+                while (valor_transferencia > saldo_em_conta) {
+
+                    alert("Operação não autorizada");
+
+                    menu_principal();
+
+                }
+
+                while (valor_transferencia <= 0) {
+
+                    alert("Operação não autorizada");
+
+                    menu_principal();
+
+                }
+
+                var resultado_transferencia = saldo_em_conta - valor_transferencia;
+
+                alert("Transferencia feita com sucesso!");
+
+                menu_principal();
+
+            } else {
+
+                alert("Operação não autorizada");
+
+                menu_principal();
+            }
+
+        }
+
+        function sair() {
+
+            alert(nome + ", foi um prazer ter você por aqui!");
+
+            return;
+
+        }
+
+        login();
+
+    </script>
+</body>
+
+</html>
